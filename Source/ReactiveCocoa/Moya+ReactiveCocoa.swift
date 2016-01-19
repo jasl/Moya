@@ -5,18 +5,18 @@ import ReactiveCocoa
 public class ReactiveCocoaMoyaProvider<Target where Target: TargetType>: MoyaProvider<Target> {
     private let stubScheduler: DateSchedulerType?
     /// Initializes a reactive provider.
-    public init(endpointClosure: EndpointClosure = MoyaProvider.DefaultEndpointMapping,
-        requestClosure: RequestClosure = MoyaProvider.DefaultRequestMapping,
-        stubClosure: StubClosure = MoyaProvider.NeverStub,
+    public init(endpointClosure: EndpointClosure = DefaultEndpointMapping,
+        requestClosure: RequestClosure = DefaultRequestMapping,
+        stubClosure: StubClosure = NeverStub,
         manager: Manager = Manager.sharedInstance,
         plugins: [PluginType] = [], stubScheduler: DateSchedulerType? = nil) {
             self.stubScheduler = stubScheduler
             super.init(endpointClosure: endpointClosure, requestClosure: requestClosure, stubClosure: stubClosure, manager: manager, plugins: plugins)
     }
-    
+
     /// Designated request-making method.
     public func request(token: Target) -> SignalProducer<Response, Error> {
-        
+
         // Creates a producer that starts a request each time it's started.
         return SignalProducer { [weak self] observer, requestDisposable in
             let cancellableToken = self?.request(token) { result in
@@ -29,7 +29,7 @@ public class ReactiveCocoaMoyaProvider<Target where Target: TargetType>: MoyaPro
                     observer.sendFailed(error)
                 }
             }
-            
+
             requestDisposable.addDisposable {
                 // Cancel the request
                 cancellableToken?.cancel()
