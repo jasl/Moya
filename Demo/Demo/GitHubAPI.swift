@@ -5,7 +5,6 @@ import Moya
 
 let GitHubProvider = MoyaProvider<GitHub>()
 
-
 // MARK: - Provider support
 
 private extension String {

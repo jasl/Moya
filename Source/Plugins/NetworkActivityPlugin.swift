@@ -8,7 +8,7 @@ public enum NetworkActivityChangeType {
 
 /// Provides each request with optional NSURLCredentials.
 public final class NetworkActivityPlugin: PluginType {
-    
+
     public typealias NetworkActivityClosure = (change: NetworkActivityChangeType) -> ()
     let networkActivityClosure: NetworkActivityClosure
     
@@ -22,7 +22,7 @@ public final class NetworkActivityPlugin: PluginType {
     public func willSendRequest(request: RequestType, target: TargetType) {
         networkActivityClosure(change: .Began)
     }
-    
+
     /// Called by the provider as soon as a response arrives
     public func didReceiveResponse(result: Result<Moya.Response, Moya.Error>, target: TargetType) {
         networkActivityClosure(change: .Ended)

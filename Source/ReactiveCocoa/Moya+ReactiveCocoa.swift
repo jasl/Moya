@@ -13,7 +13,7 @@ public class ReactiveCocoaMoyaProvider<Target where Target: TargetType>: MoyaPro
             self.stubScheduler = stubScheduler
             super.init(endpointClosure: endpointClosure, requestClosure: requestClosure, stubClosure: stubClosure, manager: manager, plugins: plugins)
     }
-    
+
     /// Designated request-making method.
     public func request(token: Target) -> SignalProducer<Response, Error> {
         

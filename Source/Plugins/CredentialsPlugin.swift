@@ -18,7 +18,7 @@ public final class CredentialsPlugin: PluginType {
             request.authenticate(usingCredential: credentials)
         }
     }
-    
+
     public func didReceiveResponse(result: Result<Moya.Response, Moya.Error>, target: TargetType) {
 
     }
